@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - lts/*
+install:
+  - npx pnpm i # npm ci
+script:
+  - npx pnpm run content-build # npm run docs:build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: content/.vitepress/dist
+  keep_history: true
+  on:
+    branch: main
