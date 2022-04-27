@@ -10,5 +10,5 @@ deploy:
   skip_cleanup: true
   local_dir: content/.vitepress/dist
   keep_history: true
-  on:
+  on: [push]
     branch: main
