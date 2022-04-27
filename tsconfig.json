@@ -15,7 +15,7 @@
   "include": [
     "src",
     "types",
-    "demo/.vitepress/theme"
+    "content/.vitepress/theme"
   ],
   "exclude": ["node_modules"]
 }

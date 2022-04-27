@@ -70,6 +70,20 @@ watchPostEffect(async () => {
   display: none;
 } */
 
+.VPSidebar::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 8px;
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background-color: var(--vt-c-bg);
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--vt-c-brand);
+}
+
 @media (min-width: 960px) {
   .VPSidebar {
     top: calc(var(--vt-nav-height) + var(--vt-banner-height, 0px));

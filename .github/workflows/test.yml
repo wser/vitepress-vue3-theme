@@ -10,4 +10,4 @@ jobs:
       - name: install and test
         run: |
           yarn install
-          yarn demo-build
+          yarn content-build
