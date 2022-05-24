@@ -37,10 +37,15 @@ jobs:
       - name: Build documentation site
         run: pnpm docs:build
 
-      - name: Deploy to GitHub Pages
-        uses: pages
+      - name: Force push to destination branch
+        uses: ad-m/github-push-action@v0.5.0
         with:
-          target_branch: main
-          build_dir: docs/.vitepress/dist
-        env:
-          GH_PAT: ${{ secrets.GH_PAGES_TOKEN }}
+          # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Destination branch to push changes
+          branch: gh-pages
+          # Use force push to fully overwrite the destination branch
+          force: true
+          # We have to push from the folder where files were generated.
+          # Same were the new repo was initialized in the previous step
+          directory: ./docs/.vitepress/dist
