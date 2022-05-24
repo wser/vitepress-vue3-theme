@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCS_GA_ID: G-CTB8FQ7VMW
       NODE_VERSION: '16'
 
     steps:
@@ -43,6 +42,6 @@ jobs:
         with:
           repo: vuepress/vuepress.github.io
           target_branch: main
-          build_dir: docs/.vuepress/dist
+          build_dir: docs/.vitepress/dist
         env:
           GH_PAT: ${{ secrets.GH_PAGES_TOKEN }}
