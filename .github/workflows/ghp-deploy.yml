@@ -38,6 +38,7 @@ jobs:
         run: pnpm docs:build
 
       - name: Deploy to GitHub Pages
+        uses: pages
         with:
           target_branch: main
           build_dir: docs/.vitepress/dist
