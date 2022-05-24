@@ -36,13 +36,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build documentation site
-        run: pnpm docs:release
+        run: pnpm docs:build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
         with:
           repo: vuepress/vuepress.github.io
           target_branch: main
-          build_dir: docs/.vuepress/dist
+          build_dir: src/.vuepress/dist
         env:
           GH_PAT: ${{ secrets.GH_PAGES_TOKEN }}
