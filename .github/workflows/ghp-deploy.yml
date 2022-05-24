@@ -38,10 +38,8 @@ jobs:
         run: pnpm docs:build
 
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2.2.0
-        with:
-          repo: vuepress/vuepress.github.io
-          target_branch: main
-          build_dir: docs/.vitepress/dist
+        provider: pages
+        skip_cleanup: true
+        local_dir: docs/.vitepress/dist
         env:
           GH_PAT: ${{ secrets.GH_PAGES_TOKEN }}
