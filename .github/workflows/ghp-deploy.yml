@@ -18,7 +18,7 @@ jobs:
 
       - name: Init new repo in dist folder and commit generated files
         run: |
-          cd content/.vitepress/dist
+          cd docs/.vitepress/dist
           git init
           git add -A
           git config --local user.email "action@github.com"
@@ -32,4 +32,4 @@ jobs:
           # this might change depending on whether you are publishing a site for a normal repo or a user/organization repo
           branch: main
           force: true
-          directory: content/.vitepress/dist
+          directory: docs/.vitepress/dist
