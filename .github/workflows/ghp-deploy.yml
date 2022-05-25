@@ -19,7 +19,7 @@ jobs:
 
       - name: Init new repo in dist folder and commit generated files
         run: |
-          cd content/.vvitepress/dist
+          cd content/.vitepress/dist
           git init
           git add -A
           git config --local user.email "action@github.com"
