@@ -1,51 +1,36 @@
-name: docs
-
+name: Deploy to GitHub pages
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - '**/__tests__/**'
-  workflow_dispatch:
-
+    # this might change depending on whether you are publishing a site for a normal repo or a user/organization repo
+    branches: [master]
 jobs:
-  docs:
+  build:
     runs-on: ubuntu-latest
 
-    env:
-      NODE_VERSION: '16'
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+
+      - name: Generate static vuepress files
+        uses: actions/setup-node@v1
         with:
-          fetch-depth: 0
+          node-version: '12.x'
+      - run: npm ci
+      - run: npm run build
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build documentation site
-        run: pnpm docs:build
+      - name: Init new repo in dist folder and commit generated files
+        run: |
+          cd content/.vvitepress/dist
+          git init
+          git add -A
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m 'deploy'
 
       - name: Force push to destination branch
         uses: ad-m/github-push-action@v0.5.0
         with:
-          # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Destination branch to push changes
+          # this might change depending on whether you are publishing a site for a normal repo or a user/organization repo
           branch: gh-pages
-          # Use force push to fully overwrite the destination branch
           force: true
-          # We have to push from the folder where files were generated.
-          # Same were the new repo was initialized in the previous step
-          directory: ./docs/.vitepress/dist
+          directory: content/.vitepress/dist
