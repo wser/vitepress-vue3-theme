@@ -13,8 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - run: npm ci
-      - run: npm run build
+      - run: pnpm ci-docs
+      - run: pnpm run build
 
       - name: Init new repo in dist folder and commit generated files
         run: |
